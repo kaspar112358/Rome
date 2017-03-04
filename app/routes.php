@@ -5,4 +5,4 @@
     return View::create("main");
 });*/
 
-Route::ressource("/check", "main");
+Route::ressource("/check/hans/grethe/joergen", "main");

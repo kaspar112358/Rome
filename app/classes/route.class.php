@@ -98,14 +98,15 @@ class Route {
     }
     
     public static function ressource($path, $ressource){
-        $url = Route::sanatize_url();
-        if(count($url) == 1){
+        $url = array_values(array_filter(explode("/",str_replace(ROOT_URL.$path, "", Route::url()))));
+        if(Route::match($path)){
             return View::create($ressource);
-        } else if(count($url) > 2){
+        } else if(count($url) > 1){
             return;
             
-        } else if("/".$url[0] == $path && isset($url[1])){
-            View::call_method_in($ressource, $url[1]);
+        } else if(isset($url[0])){
+            
+            View::call_method_in($ressource, $url[0]);
         }
         
         return;
